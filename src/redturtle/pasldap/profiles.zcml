@@ -1,0 +1,32 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+    i18n_domain="redturtle.pasldap"
+    >
+
+  <genericsetup:registerProfile
+      name="default"
+      title="RedTurtle Plone LDAP support: Install"
+      description="Package to configure a new RedTurtle Plone LDAP support site"
+      provides="Products.GenericSetup.interfaces.EXTENSION"
+      directory="profiles/default"
+      />
+
+  <genericsetup:registerProfile
+      name="uninstall"
+      title="RedTurtle Plone LDAP support: Uninstall"
+      description="Uninstall RedTurtle Plone LDAP support setup."
+      provides="Products.GenericSetup.interfaces.EXTENSION"
+      directory="profiles/uninstall"
+      />
+
+  <!-- Hide Uninstall Profile-->
+  <utility
+      factory=".setuphandlers.HiddenProfiles"
+      name="redturtle.pasldap"
+      />
+
+
+  <include package=".upgrades" />
+
+</configure>
