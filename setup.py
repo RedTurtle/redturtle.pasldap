@@ -56,7 +56,7 @@ setup(
         "collective.regenv",
         "pas.plugins.ldap>=1.8.0",
         "yafowil.plone>=5.0.0a1",
-        "yafowil-bootstrap>2.0.0a1",
+        "yafowil-bootstrap==2.0.0a2",
     ],
     extras_require={
         "test": [
