@@ -21,6 +21,12 @@ def resilient_enumerate_users(orig):
         max_results=None,
         **kw,
     ):
+        # XXX: manually manage query like kw:{'id': 'user@example.com*'} exact_match:False
+        if kw.keys() == ["id"] and not exact_match:
+            logger.debug("convert wrong query kw:%s exact_match:%s", kw, exact_match)
+            exact_match = True
+            kw["id"] = kw["id"].strip("*")
+
         cache_key = None
         if login is not None and exact_match:
             cache_key = "login:%s" % login
