@@ -8,6 +8,7 @@ A new addon for Plone
 * [ ] Log LDAP queries to investigate long processing times and unnecessary operations (ensure passwords are not logged for security).
 * [ ] Make LDAP operations resilient by persistently caching certain queries (opinionated suggestion).
 * [ ] Intercept errors such as "Problems getting group_ids!" caused by misconfigurations.
+* [ ] During testing I saw some call to enumerateUsers with `criteria:{'id': 'user@example.com*'} exact_match:False`, ... 
 * [ ] ...
 
 
@@ -18,12 +19,14 @@ We need restapi here? (maybe not)
 
 ## pas.plugins.ldap hidden gems
 
+```
 LDAP_ERROR_LOG_TIMEOUT = float(
     os.environ.get("PAS_PLUGINS_LDAP_ERROR_LOG_TIMEOUT", 300.0)
 )
 LDAP_LONG_RUNNING_LOG_THRESHOLD = float(
     os.environ.get("PAS_PLUGINS_LDAP_LONG_RUNNING_LOG_THRESHOLD", 5.0)
 )
+```
 
 ## Installation
 
