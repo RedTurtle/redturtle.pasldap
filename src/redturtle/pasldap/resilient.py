@@ -55,6 +55,14 @@ def resilient_enumerate_users(orig):
 
         if cache_key:
             logger.info("MISS: enumerateUsers %s", cache_key)
+            if not users:
+                # TODO: verificare se il risultato vuoto è un errore (da non mettere in cache) o veramente
+                #       un risultato vuoto (da mettere in cache? solo temporaneamente?)
+                logger.warning(
+                    "enumerateUsers %s not found (possible error? not caching?)",
+                    cache_key,
+                )
+                return users
             if not hasattr(self, "_cache_users"):
                 self._cache_users = PersistentMapping()
                 safeWrite(self)
