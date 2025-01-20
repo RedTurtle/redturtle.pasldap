@@ -9,6 +9,21 @@ from redturtle.pasldap import logger
 
 # logger = logging.getLogger(__name__)
 
+# potential users in the Zope acl_users
+RESERVED_LOGINS = ["root", "admin", "adminrt"]
+RESERVED_IDS = ["root", "admin", "adminrt"]
+
+# [node.ext.ldap:511][MainThread] LDAP search with filter: (&(objectClass=person)(sAMAccountName=root))
+
+# [redturtle.pasldap:58][MainThread] func=pas.plugins.ldap.plugin.enumerateUsers info=None args=(<LDAPPlugin at /.../acl_users/pasldap>,) kwargs={'id': None, 'login': None, 'exact_match': False, 'sort_by': None, 'max_results': None, 'fullname': 'mario'} elapsed=32ms threshold=-1ms 🤔
+
+# [redturtle.pasldap:58][MainThread] func=pas.plugins.ldap.plugin.enumerateUsers info=None args=(<LDAPPlugin at /.../acl_users/pasldap>,) kwargs={'id': None, 'login': None, 'exact_match': False, 'sort_by': None, 'max_results': None, 'email': 'mario'} elapsed=38ms threshold=-1ms 🤔
+
+# [redturtle.pasldap:58][MainThread] func=pas.plugins.ldap.plugin.enumerateUsers info=None args=(<LDAPPlugin at /.../acl_users/pasldap>,) kwargs={'id': '...', 'login': None, 'exact_match': False, 'sort_by': None, 'max_results': None} elapsed=30ms threshold=-1ms 🤔
+
+# XXX: se si fa una ricerca sul pannello di controllo, ad esempio con "mario" vengono comunque interrogati (almeno una volta)
+#      tutti gli utenti dell'ldap ( !?)
+
 
 # OPIONINATED
 def resilient_enumerate_users(orig):
@@ -30,8 +45,12 @@ def resilient_enumerate_users(orig):
         cache_key = None
         if login is not None and exact_match:
             cache_key = "login:%s" % login
+            if login in RESERVED_LOGINS:
+                return []
         elif id is not None and exact_match:
             cache_key = "id:%s" % id
+            if id in RESERVED_IDS:
+                return []
         if (
             cache_key
             and hasattr(self, "_cache_users")

@@ -33,18 +33,18 @@ if os.environ.get("PAS_LDAP_READWRITE", "false").lower() != "true":
     LDAPUserPropertySheet.setProperties = return_false
 
 
-def debug(f):
-    def _wrapper(*args, **kwargs):
-        logger.debug("Entering %s", f.__name__)
-        import pdb
-
-        pdb.set_trace()
-        try:
-            return f(*args, **kwargs)
-        finally:
-            logger.debug("Exiting %s", f.__name__)
-
-    return _wrapper
+# def debug(f):
+#     def _wrapper(*args, **kwargs):
+#         logger.debug("Entering %s", f.__name__)
+#         import pdb
+#
+#         pdb.set_trace()
+#         try:
+#             return f(*args, **kwargs)
+#         finally:
+#             logger.debug("Exiting %s", f.__name__)
+#
+#     return _wrapper
 
 
 def apply_patches():

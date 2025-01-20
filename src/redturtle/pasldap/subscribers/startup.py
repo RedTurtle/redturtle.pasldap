@@ -49,6 +49,8 @@ def site_load(event):
 
 def check_pas(plugin):
     # import pdb; pdb.set_trace()
+    # TODO: enumerateUsers deve essere dopo, rispetto a source_users e mutable_properties
+    #       in modo che le risoluzioni locali avvengano subito
     logger.info("  Check plugin: %s", plugin.getId())
     if plugin.is_plugin_active(pas_interfaces.IGroupEnumerationPlugin):
         logger.warning(
@@ -62,6 +64,7 @@ def check_pas(plugin):
         )
     if plugin.is_plugin_active(plonepas_interfaces.group.IGroupManagement):
         logger.warning("    [WARNING] GroupManagement is active => evaluate to disable")
+
     # if plugin.is_plugin_active(pas_interfaces.IPropertiesPlugin):
     #     logger.warning("    [WARNING] PropertiesPlugin is active => evaluate to disable")
     # if plugin.is_plugin_active(pas_interfaces.IRoleEnumerationPlugin):
