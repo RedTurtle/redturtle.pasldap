@@ -92,6 +92,9 @@ def resilient_get_properties_for_user(orig):
             else:
                 logger.info("MISS: getPropertiesForUser %s", cache_key)
                 sheet = orig(self, user_or_group, request)
+                if not hasattr(sheet, "_properties"):
+                    logger.warning("missing _properies for %s", cache_key)
+                    return sheet
                 if not hasattr(self, "_cache_properties"):
                     self._cache_properties = PersistentMapping()
                     safeWrite(self)

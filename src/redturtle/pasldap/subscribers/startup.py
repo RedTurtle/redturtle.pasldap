@@ -40,8 +40,8 @@ def site_load(event):
                 # plone.many_users and plone.many_groups
 
                 # XXX: verify using collective.regenv
-                if not portal.portal_registry.get("plone.many_users"):
-                    logger.warning("[LDAP] plone.many_users not set")
+                # if not portal.portal_registry.get("plone.many_users"):
+                #     logger.warning("[LDAP] plone.many_users not set")
 
     finally:
         conn.close()

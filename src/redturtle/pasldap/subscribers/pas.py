@@ -4,7 +4,8 @@ from redturtle.pasldap import logger
 
 
 def loggedin(event):
-    print("Logged in")
+    if not hasattr(event.principal, "getOrderedPropertySheets"):
+        return
     cache_key = event.principal.getId()
     portal = api.portal.get()
     for psheet in event.principal.getOrderedPropertySheets():
