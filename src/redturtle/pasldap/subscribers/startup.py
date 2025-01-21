@@ -49,8 +49,12 @@ def site_load(event):
 
 def check_pas(plugin):
     # import pdb; pdb.set_trace()
+
     # TODO: enumerateUsers deve essere dopo, rispetto a source_users e mutable_properties
     #       in modo che le risoluzioni locali avvengano subito
+
+    # TODO: anche in authenticate probabilmente sarebbe meglio avere pasldap dopo quelli delle sessioni/jwt/source ?
+
     logger.info("  Check plugin: %s", plugin.getId())
     if plugin.is_plugin_active(pas_interfaces.IGroupEnumerationPlugin):
         logger.warning(

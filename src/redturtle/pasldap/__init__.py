@@ -16,6 +16,10 @@ logger = logging.getLogger(PACKAGE_NAME)
 
 # increase logging
 logging.getLogger("node.ext.ldap").setLevel(logging.DEBUG)
+# XXX: attenzione nei log di debug "node" potrebbe mette anche le credenziali
+#      o il token dell'utente.
+# logging.getLogger("node").setLevel(logging.DEBUG)
+
 
 # TODO: implements readonly property in pas.plugins.ldap
 ldap_readonly = False

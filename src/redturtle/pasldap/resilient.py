@@ -1,17 +1,22 @@
 from persistent.mapping import PersistentMapping
+from plone import api
 from plone.protect.utils import safeWrite
 from Products.PluggableAuthService.UserPropertySheet import UserPropertySheet
-
-# import logging
 from redturtle.pasldap import ldap_readonly
 from redturtle.pasldap import logger
 
 
-# logger = logging.getLogger(__name__)
-
 # potential users in the Zope acl_users
-RESERVED_LOGINS = ["root", "admin", "adminrt"]
-RESERVED_IDS = ["root", "admin", "adminrt"]
+RESERVED_IDS = [
+    "root",
+    "admin",
+    "adminrt",
+    "operatori_pratiche",
+    "Administrators",
+    "Site Administrators",
+    "AuthenticatedUsers",
+]
+RESERVED_LOGINS = RESERVED_IDS
 
 # [node.ext.ldap:511][MainThread] LDAP search with filter: (&(objectClass=person)(sAMAccountName=root))
 
@@ -75,13 +80,20 @@ def resilient_enumerate_users(orig):
         if cache_key:
             logger.info("MISS: enumerateUsers %s", cache_key)
             if not users:
-                # TODO: verificare se il risultato vuoto è un errore (da non mettere in cache) o veramente
-                #       un risultato vuoto (da mettere in cache? solo temporaneamente?)
-                logger.warning(
-                    "enumerateUsers %s not found (possible error? not caching?)",
-                    cache_key,
-                )
-                return users
+                local_users = api.portal.get_tool("acl_users").source_users
+                local_groups = api.portal.get_tool("acl_users").source_groups
+                if not local_users.enumerateUsers(
+                    id=id, login=login, exact_match=True
+                ) and not local_groups.enumerateGroups(
+                    id=id, login=login, exact_match=True
+                ):
+                    # TODO: verificare se il risultato vuoto è un errore (da non mettere in cache) o veramente
+                    #       un risultato vuoto (da mettere in cache? solo temporaneamente?)
+                    logger.warning(
+                        "enumerateUsers %s not found (possible error? not caching?)",
+                        cache_key,
+                    )
+                    return users
             if not hasattr(self, "_cache_users"):
                 self._cache_users = PersistentMapping()
                 safeWrite(self)
@@ -99,6 +111,10 @@ def resilient_get_properties_for_user(orig):
         if ldap_readonly:
             # TODO: analyze when invalidate, maybe after the user logged in
             cache_key = user_or_group.getId()
+            # TODO: user_or_group.isGroup() and group plugin not active ....
+            if user_or_group.getId() in RESERVED_IDS:
+                return {}
+
             if hasattr(self, "_cache_properties") and isinstance(
                 self._cache_properties.get(cache_key), dict
             ):
@@ -111,13 +127,18 @@ def resilient_get_properties_for_user(orig):
             else:
                 logger.info("MISS: getPropertiesForUser %s", cache_key)
                 sheet = orig(self, user_or_group, request)
-                if not hasattr(sheet, "_properties"):
+                if sheet == {}:
+                    # XXX: no result, caching no result
+                    properties = {}
+                elif not hasattr(sheet, "_properties"):
                     logger.warning("missing _properies for %s", cache_key)
                     return sheet
+                else:
+                    properties = sheet._properties
                 if not hasattr(self, "_cache_properties"):
                     self._cache_properties = PersistentMapping()
                     safeWrite(self)
-                self._cache_properties[cache_key] = sheet._properties
+                self._cache_properties[cache_key] = properties
                 safeWrite(self._cache_properties)
                 return sheet
         else:
