@@ -24,8 +24,6 @@ RESERVED_LOGINS = RESERVED_IDS
 
 # [redturtle.pasldap:58][MainThread] func=pas.plugins.ldap.plugin.enumerateUsers info=None args=(<LDAPPlugin at /.../acl_users/pasldap>,) kwargs={'id': None, 'login': None, 'exact_match': False, 'sort_by': None, 'max_results': None, 'email': 'mario'} elapsed=38ms threshold=-1ms 🤔
 
-# [redturtle.pasldap:58][MainThread] func=pas.plugins.ldap.plugin.enumerateUsers info=None args=(<LDAPPlugin at /.../acl_users/pasldap>,) kwargs={'id': '...', 'login': None, 'exact_match': False, 'sort_by': None, 'max_results': None} elapsed=30ms threshold=-1ms 🤔
-
 # XXX: se si fa una ricerca sul pannello di controllo, ad esempio con "mario" vengono comunque interrogati (almeno una volta)
 #      tutti gli utenti dell'ldap ( !?)
 
