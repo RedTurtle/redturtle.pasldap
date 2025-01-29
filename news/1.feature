@@ -1,0 +1,1 @@
+- add "Anonymous User" to the reserved userids list @mamico

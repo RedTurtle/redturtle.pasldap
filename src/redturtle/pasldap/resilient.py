@@ -13,6 +13,7 @@ RESERVED_IDS = [
     "adminrt",
     "operatori_pratiche",
     "Administrators",
+    "Anonymous User",
     "Site Administrators",
     "AuthenticatedUsers",
 ]
