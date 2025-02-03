@@ -17,6 +17,7 @@ RESERVED_IDS = [
     "Anonymous User",
     "Site Administrators",
     "AuthenticatedUsers",
+    "Anonymous User",
 ]
 RESERVED_LOGINS = RESERVED_IDS
 
