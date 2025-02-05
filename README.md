@@ -1,16 +1,24 @@
 # redturtle.pasldap
 
-A new addon for Plone
+This product is currently in development and highly experimental. 
+
+Its goal is to improve the performance and resilience of pas.plugins.ldap. 
+
+Some implementations may be debatable and have specific prerequisites and conditions. 
+
+We strongly recommend reviewing the code and its implemented functionalities carefully 
+before using this product.  — or not using it at all. :)
 
 ## Features
 
-* [ ] Check the pas.plugins.ldap configuration for best practices, such as read/connection timeouts, memcached usage, handling many users, etc.
-* [ ] Log LDAP queries to investigate long processing times and unnecessary operations (ensure passwords are not logged for security).
+* [ ] Check the pas.plugins.ldap configuration for best practices, such as read/connection timeouts, 
+memcached usage, handling many users, etc.
+* [ ] Log LDAP queries to investigate long processing times and unnecessary operations (ensure 
+passwords are not logged for security).
 * [ ] Make LDAP operations resilient by persistently caching certain queries (opinionated suggestion).
 * [ ] Intercept errors such as "Problems getting group_ids!" caused by misconfigurations.
 * [ ] During testing I saw some call to enumerateUsers with `criteria:{'id': 'user@example.com*'} exact_match:False`, ... 
 * [ ] ...
-
 
 We need a profile installation here? (maybe not)
 
