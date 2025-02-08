@@ -6,7 +6,7 @@ template = "default"
 commit-id = "71d0218b"
 
 [pyproject]
-codespell_skip = "*.min.js"
+codespell_skip = "*.min.js,*.ldif"
 codespell_ignores = "vew"
 dependencies_mappings = [
   "pytest-plone = ['pytest', 'plone.testing', 'plone.app.testing']",

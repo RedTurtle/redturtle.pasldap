@@ -1,0 +1,8 @@
+# TODO: make collective.regenv compatible with pas.plugins.ldap (?)
+Plone/acl_users/ldap:
+   server-uri: ldap://localhost:10389
+   server-user: "cn=admin,dc=planetexpress,dc=com"
+   server-password: GoodNewsEveryone
+   users-dn: "ou=people,dc=planetexpress,dc=com"
+   server-start_tls: true
+   server-ignore_cert: true
