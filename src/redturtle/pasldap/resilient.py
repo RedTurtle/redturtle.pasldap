@@ -21,6 +21,7 @@ RESERVED_IDS = [
 ]
 RESERVED_LOGINS = RESERVED_IDS
 
+
 # [node.ext.ldap:511][MainThread] LDAP search with filter: (&(objectClass=person)(sAMAccountName=root))
 
 # [redturtle.pasldap:58][MainThread] func=pas.plugins.ldap.plugin.enumerateUsers info=None args=(<LDAPPlugin at /.../acl_users/pasldap>,) kwargs={'id': None, 'login': None, 'exact_match': False, 'sort_by': None, 'max_results': None, 'fullname': 'mario'} elapsed=32ms threshold=-1ms 🤔
@@ -87,12 +88,8 @@ def resilient_enumerate_users(orig):
             logger.info("MISS: enumerateUsers %s", cache_key)
             if not users:
                 local_users = api.portal.get_tool("acl_users").source_users
-                local_groups = api.portal.get_tool("acl_users").source_groups
-                if not local_users.enumerateUsers(
-                    id=id, login=login, exact_match=True
-                ) and not local_groups.enumerateGroups(
-                    id=id, login=login, exact_match=True
-                ):
+                # local_groups = api.portal.get_tool("acl_users").source_groups
+                if not local_users.enumerateUsers(id=id, login=login, exact_match=True):
                     # TODO: verificare se il risultato vuoto è un errore (da non mettere in cache) o veramente
                     #       un risultato vuoto (da mettere in cache? solo temporaneamente?)
                     logger.warning(
