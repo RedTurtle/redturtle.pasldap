@@ -1,4 +1,4 @@
-## 1.0.0a3 (unreleased)
+## 1.0.0a3 (2025-10-07)
 
 
 - add "Anonymous User" to the reserved userids list @mamico
