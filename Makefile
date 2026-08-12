@@ -123,3 +123,9 @@ add: $(BIN_FOLDER)/pipx
 .PHONY: start-dev
 start-dev: ## Start a Plone instance on localhost:8080 against local ldap
 	PYTHONWARNINGS=ignore PLONE_REGISTRY_YAML=tests/docker-test-openldap/regenv.yaml $(BIN_FOLDER)/runwsgi instance/etc/zope.ini
+
+.PHONY: release
+release: $(VENV_FOLDER) ## Create a release
+	@echo "$(GREEN)==> Create a release$(RESET)"
+	@uv pip install -e ".[release]"
+	@$(BIN_FOLDER)/fullrelease
