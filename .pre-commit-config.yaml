@@ -69,11 +69,6 @@ repos:
     rev: "0.24.2"
     hooks:
     -   id: check-python-versions
-        # Only check setup.py against itself: tox.ini intentionally drops py3.8
-        # (Plone 6.0 itself no longer supports it), but we still declare and
-        # support py3.8 for consumers not using the tox-driven Plone 6.0 matrix.
-        # NOTE: this is a manual override of what `plone.meta`'s config-package
-        # generates (which would use `setup.py,tox.ini`); re-apply after re-running it.
         args: ['--only', 'setup.py']
 -   repo: https://github.com/collective/i18ndude
     rev: "6.3.0"
