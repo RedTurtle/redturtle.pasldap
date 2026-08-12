@@ -7,7 +7,6 @@ from zope.i18nmessageid import MessageFactory
 import logging
 import os
 
-
 PACKAGE_NAME = "redturtle.pasldap"
 
 _ = MessageFactory(PACKAGE_NAME)

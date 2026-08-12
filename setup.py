@@ -4,7 +4,6 @@ from pathlib import Path
 from setuptools import find_packages
 from setuptools import setup
 
-
 long_description = f"""
 {Path("README.md").read_text()}\n
 {Path("CONTRIBUTORS.md").read_text()}\n
@@ -51,19 +50,26 @@ setup(
     python_requires=">=3.8",
     install_requires=[
         "setuptools",
+        "Products.CMFCore",
         "Products.CMFPlone",
+        "Products.PlonePAS",
+        "Products.PluggableAuthService",
+        "persistent",
         "plone.api",
-        "collective.regenv",
+        "plone.protect",
+        "zope.globalrequest",
+        "zope.i18nmessageid",
+        "zope.processlifetime",
+        "zope.publisher",
         "pas.plugins.ldap>=1.8.0",
-        "yafowil.plone>=5.0.0a1",
-        "yafowil.bootstrap>=2.0.0a1",
     ],
     extras_require={
         "test": [
             "zest.releaser[recommended]",
             "zestreleaser.towncrier",
+            "plone.app.contenttypes",
+            "plone.app.robotframework",
             "plone.app.testing",
-            "plone.restapi[test]",
             "pytest",
             "pytest-cov",
             "pytest-plone>=0.5.0",

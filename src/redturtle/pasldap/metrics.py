@@ -9,11 +9,11 @@ import traceback
 
 def emoji_by_elapsed(elapsed):
     if elapsed < 20:
-        return "\U0001F60E"  # GOOD
+        return "\U0001f60e"  # GOOD
     elif elapsed < 100:
-        return "\U0001F914"  # MUMBLE
+        return "\U0001f914"  # MUMBLE
     else:
-        return "\U0001F4A9"  # SHIT
+        return "\U0001f4a9"  # SHIT
 
 
 def sanitize_kwargs(kwargs):
