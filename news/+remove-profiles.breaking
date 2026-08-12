@@ -1,0 +1,1 @@
+Remove the unused GenericSetup install/uninstall profile scaffolding (it was never wired into ``configure.zcml``, so the addon was never actually installable through it) and the corresponding installation tests @mamico

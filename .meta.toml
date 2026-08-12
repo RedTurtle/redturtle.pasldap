@@ -8,7 +8,7 @@ commit-id = "2.11.0"
 [pyproject]
 codespell_skip = "*.min.js,*.ldif"
 codespell_ignores = "vew"
-dependencies_ignores = "['plone.app.iterate', 'plone.app.upgrade', 'plone.volto', 'zestreleaser.towncrier', 'zest.releaser', 'zest.pocompile', 'pytest-cov', 'setuptools']"
+dependencies_ignores = "['plone.app.iterate', 'plone.app.upgrade', 'plone.volto', 'zestreleaser.towncrier', 'zest.releaser', 'zest.pocompile', 'pytest', 'pytest-cov', 'setuptools']"
 
 [gitignore]
 extra_lines = """

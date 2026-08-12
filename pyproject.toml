@@ -124,7 +124,7 @@ Zope = [
 ]
 python-dateutil = ['dateutil']
 pytest-plone = ['pytest', 'zope.pytestlayer', 'plone.testing', 'plone.app.testing']
-ignore-packages = ['plone.app.iterate', 'plone.app.upgrade', 'plone.volto', 'zestreleaser.towncrier', 'zest.releaser', 'zest.pocompile', 'pytest-cov', 'setuptools']
+ignore-packages = ['plone.app.iterate', 'plone.app.upgrade', 'plone.volto', 'zestreleaser.towncrier', 'zest.releaser', 'zest.pocompile', 'pytest', 'pytest-cov', 'setuptools']
 
 ##
 # Add extra configuration options in .meta.toml:

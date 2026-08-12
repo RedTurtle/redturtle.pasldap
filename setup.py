@@ -59,7 +59,6 @@ setup(
         "plone.protect",
         "zope.globalrequest",
         "zope.i18nmessageid",
-        "zope.interface",
         "zope.processlifetime",
         "zope.publisher",
         "pas.plugins.ldap>=1.8.0",
