@@ -5,7 +5,6 @@ from Products.PluggableAuthService.UserPropertySheet import UserPropertySheet
 from redturtle.pasldap import ldap_readonly
 from redturtle.pasldap import logger
 
-
 # potential users in the Zope acl_users
 RESERVED_IDS = [
     "root",

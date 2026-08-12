@@ -3,7 +3,6 @@ from redturtle.pasldap.testing import ACCEPTANCE_TESTING
 from redturtle.pasldap.testing import FUNCTIONAL_TESTING
 from redturtle.pasldap.testing import INTEGRATION_TESTING
 
-
 pytest_plugins = ["pytest_plone"]
 
 

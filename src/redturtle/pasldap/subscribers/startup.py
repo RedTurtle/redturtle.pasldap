@@ -7,7 +7,6 @@ from Products.PluggableAuthService.interfaces import plugins as pas_interfaces
 
 import logging
 
-
 logger = logging.getLogger(__name__)
 
 

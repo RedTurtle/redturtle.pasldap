@@ -1,21 +1,20 @@
 # Generated from:
-# https://github.com/plone/meta/tree/main/config/default
+# https://github.com/plone/meta/tree/2.x/src/plone/meta/default
 # See the inline comments on how to expand/tweak this configuration file
 [meta]
 template = "default"
-commit-id = "71d0218b"
+commit-id = "2.11.0"
 
 [pyproject]
 codespell_skip = "*.min.js,*.ldif"
 codespell_ignores = "vew"
-dependencies_mappings = [
-  "pytest-plone = ['pytest', 'plone.testing', 'plone.app.testing']",
-]
 dependencies_ignores = "['plone.app.iterate', 'plone.app.upgrade', 'plone.volto', 'zestreleaser.towncrier', 'zest.releaser', 'pytest-cov']"
 
 [gitignore]
 extra_lines = """
 .lock
+.python-version
+.venv/
 """
 
 [tox]
@@ -28,8 +27,8 @@ test_deps_additional = ""
 py_versions = "[\"3.12\", \"3.11\", \"3.10\"]"
 jobs = [
     "qa",
-    "test",
     "coverage",
     "dependencies",
     "release_ready",
+    "circular",
     ]
