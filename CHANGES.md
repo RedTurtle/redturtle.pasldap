@@ -1,3 +1,8 @@
+## 1.0.0a4 (2026-08-12)
+
+No significant changes.
+
+
 ## 1.0.0a4 (unreleased)
 
 
